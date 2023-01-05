@@ -3,7 +3,7 @@ import routes from "./Routes/api";
 
 const app = express();
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.use("/api", routes);
 
 export const myFunc = (num: number): number => {
