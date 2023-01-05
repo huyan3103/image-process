@@ -7,7 +7,7 @@ exports.myFunc = void 0;
 const express_1 = __importDefault(require("express"));
 const api_1 = __importDefault(require("./Routes/api"));
 const app = (0, express_1.default)();
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.use("/api", api_1.default);
 const myFunc = (num) => {
     return num * num;

@@ -4,11 +4,12 @@
   "description": "Udacity Task",
   "main": "index.ts",
   "scripts": {
-    "test": "npx tsc && jasmine && npx eslint . --ext .ts",
+    "test": "npm run build && npm run jasmine",
     "start": "nodemon src/index.ts",
     "build": "npx tsc",
     "prettier-format": "prettier --config .prettierrc \"./src/**/*.ts\" --write",
-    "lint": "eslint --ext .ts ."
+    "lint": "eslint --ext .ts .",
+    "jasmine": "jasmine"
   },
   "author": "HoangLe",
   "license": "ISC",
@@ -21,6 +22,7 @@
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
     "axios": "^0.27.2",
+    "concurrently": "^7.6.0",
     "eslint": "^8.31.0",
     "nodemon": "^2.0.16",
     "prettier": "^2.8.1",

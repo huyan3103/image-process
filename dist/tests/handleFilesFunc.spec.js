@@ -15,11 +15,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
 const fs_1 = require("fs");
 describe("File exits", () => {
+    let server;
+    beforeAll(() => {
+        server = require("../index");
+    });
+    afterAll(() => {
+        server.close();
+    });
     it("Make sure file not exits", () => __awaiter(void 0, void 0, void 0, function* () {
         const fileName = "fjord";
         yield (0, fs_1.unlinkSync)(`./assets/ImagesResize/${fileName}-500-500.jpg`);
         const files = yield (0, fs_1.readdirSync)("./assets/ImagesResize");
         const names = files.map((file) => file.split(".")[0]);
+        console.log(names);
         expect(names.includes(`${fileName}-500-500`)).toBe(false);
     }));
     it("Create new file after call api", () => __awaiter(void 0, void 0, void 0, function* () {

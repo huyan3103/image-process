@@ -19,8 +19,8 @@ const express_1 = require("express");
 const handleFiles_1 = require("../../utils/handleFiles");
 const imageRoute = (0, express_1.Router)();
 imageRoute.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { fileName, width, height } = req.query;
-    const validateInputRequired = !fileName || !width || !height;
+    const { filename, width, height } = req.query;
+    const validateInputRequired = !filename || !width || !height;
     if (validateInputRequired) {
         return res
             .status(500)
@@ -31,8 +31,8 @@ imageRoute.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         return res.status(500).send("Wrong format input");
     }
     try {
-        const file = yield (0, handleFiles_1.resize)(fileName, width, height);
-        const resImagesPath = `${outputPath}/${fileName}-${width}-${height}.jpg`;
+        const file = yield (0, handleFiles_1.resize)(filename, width, height);
+        const resImagesPath = `${outputPath}/${filename}-${width}-${height}.jpg`;
         file === null || file === void 0 ? void 0 : file.toFile(`.${resImagesPath}`).finally(() => {
             res.sendFile(process.cwd() + resImagesPath);
         });

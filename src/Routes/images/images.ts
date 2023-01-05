@@ -8,15 +8,15 @@ import { Request, Response, Router } from "express";
 import { resize } from "../../utils/handleFiles";
 const imageRoute = Router();
 export interface imagesReq {
-    fileName: string;
+    filename: string;
     width: string;
     height: string;
 }
 imageRoute.get(
     "/",
     async (req: Request, res: Response): Promise<Response | undefined> => {
-        const { fileName, width, height } = req.query as unknown as imagesReq;
-        const validateInputRequired = !fileName || !width || !height;
+        const { filename, width, height } = req.query as unknown as imagesReq;
+        const validateInputRequired = !filename || !width || !height;
         if (validateInputRequired) {
             return res
                 .status(500)
@@ -27,8 +27,8 @@ imageRoute.get(
             return res.status(500).send("Wrong format input");
         }
         try {
-            const file = await resize(fileName, width, height);
-            const resImagesPath = `${outputPath}/${fileName}-${width}-${height}.jpg`;
+            const file = await resize(filename, width, height);
+            const resImagesPath = `${outputPath}/${filename}-${width}-${height}.jpg`;
             file?.toFile(`.${resImagesPath}`).finally(() => {
                 res.sendFile(process.cwd() + resImagesPath);
             });

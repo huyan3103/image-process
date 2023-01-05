@@ -7,6 +7,7 @@ describe("File exits", () => {
         await unlinkSync(`./assets/ImagesResize/${fileName}-500-500.jpg`);
         const files = await readdirSync("./assets/ImagesResize");
         const names = files.map((file) => file.split(".")[0]);
+        console.log(names);
         expect(names.includes(`${fileName}-500-500`)).toBe(false);
     });
     it("Create new file after call api", async () => {
